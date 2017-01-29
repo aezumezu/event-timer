@@ -71,9 +71,15 @@
   list-style: none;
 }
 
-
 .header-nav li:first-child {
   display: inline-block;
   list-style: none;
   margin-right: 50px;
+}
+
+.link {
+  display: inline-block;
+  cursor: pointer;
+  padding: 10px;
+  margin-top: 5px;
 }

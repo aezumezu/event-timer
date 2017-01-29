@@ -5,17 +5,23 @@ import './style/styles.css';
 import SetClockTime from './components/set-timer';
 import ShowCountDown from './components/show-countdown';
 import SessionRecords from './components/session-records';
+import Header from './components/header';
 
 class Main extends React.Component {
   constructor() {
     super();
     this.state = {
+      whatToRender: 'SetClockTime',
       speechTime: '',
-      records: []
+      records: [],
+      stopTimer: false
     }
     this.setSpeechTime = this.setSpeechTime.bind(this);
     this.countTime = this.countTime.bind(this);
     this.getChartOptions = this.getChartOptions.bind(this);
+    this.renderBody = this.renderBody.bind(this);
+    this.setView = this.setView.bind(this);
+    this.toggleStopTimer = this.toggleStopTimer.bind(this);
   }
 
   getChartOptions() {
@@ -53,8 +59,13 @@ class Main extends React.Component {
     record.speechNumber = speechNumber;
     const records = this.state.records;
     records.push(record);
-    this.setState({ records });
+    this.setState({ records});
+    this.setView('countDownClock');
     this.countTime(speechNumber);
+  }
+
+  toggleStopTimer() {
+    this.setState({stopTimer: !this.state.stopTimer});
   }
 
   countTime(speechNumber) {
@@ -65,34 +76,42 @@ class Main extends React.Component {
       speech.timeRemaining = speech.time - speech.timeUsed;
       const records = this.state.records;
       records[speechNumber - 1].timeUsed = speech.timeUsed;
-      records[speechNumber - 1].timeRemaining = speech.timeRemaining;
+      records[speechNumber - 1].timeRemaining = speech.timeRemaining > 0  ?
+        speech.timeRemaining : 0;
 
       this.setState({ records });
-      if (!speech.timeRemaining) {
+      if (this.state.stopTimer) {
         clearInterval(timer);
+        this.toggleStopTimer();
       }
     }, 1000);
   }
 
+  setView(view) {
+    this.setState({whatToRender: view });
+  }
+
+  renderBody() {
+    let appBody;
+    const whatToRender = this.state.whatToRender;
+    if (whatToRender === 'SessionRecords') {
+      appBody = <SessionRecords data={this.state.records} />;
+    } else if (whatToRender === 'countDownClock') {
+      appBody = <ShowCountDown options={this.getChartOptions} stopTimer={this.toggleStopTimer}/>;
+    } else {
+      appBody = <SetClockTime setTime={this.setSpeechTime} />;
+    }
+    return appBody;
+  }
+
   render() {
+    const renderBody = this.renderBody();
     return (
       <div className="app-body">
         <div>
-          <div className="header">
-            <h1>TimeMaster</h1>
-            <div>
-              <ul className="header-nav">
-                <li><Link to='/'>Home</Link></li>
-                <li><Link to='/records'>Show Session Records</Link></li>
-              </ul>
-            </div>
-          </div>
+          <Header setView={this.setView}/>
           <div className="display-body" id="display-area">
-            <Router history={browserHistory}>
-              <Route path="/" component={SetClockTime} setTime={this.setSpeechTime} />
-              <Route path="/showclock" component={ShowCountDown} options={this.getChartOptions} />
-              <Route path="/records" component={SessionRecords} data={this.state.records} />
-            </Router>
+            {renderBody}
           </div>
         </div>
       </div>

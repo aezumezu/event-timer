@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router';
 
 class SetClockTime extends React.Component {
   constructor() {
@@ -22,7 +21,7 @@ class SetClockTime extends React.Component {
     const sec = document.getElementById('secs').value;
     const time = this.convertTime(hr, min, sec);
     const title = document.getElementById('title').value;
-    this.props.route.setTime(time, title);
+    this.props.setTime(time, title);
   }
 
   render() {
@@ -36,7 +35,7 @@ class SetClockTime extends React.Component {
           <input id="mins" type="number" min="00" max="59" placeholder="MM" />
           <input id="secs" type="number" min="00" max="59" placeholder="SS" />
         </div>
-        <Link to="/showclock"><input type="button" value="Start CountDown" onClick={this.setTime} /></Link>
+        <input type="button" value="Start CountDown" onClick={this.setTime} />
       </div>
     );
   }
