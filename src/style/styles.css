@@ -1,0 +1,79 @@
+.app-body {
+  max-width: 600px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  background-color: #666;
+}
+.header {
+  height: 20%;
+  font-size: 35px;
+  margin: auto;
+  text-align: center;
+}
+
+.display-body{
+  max-height: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.app-content {
+  display: inline-block;
+}
+
+.time-bar {
+  max-height: 100%;
+  min-height: 100%;
+  max-width: 20%;
+  min-width: 20%;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.collect-data input, .collect-data label {
+  font-size: 35px;
+  margin: auto;
+  display: block;
+  width: 90%;
+}
+.collect-data input[type=text] {
+  padding: 10px;
+}
+
+.collect-data input[type=button] {
+  display: block;
+  padding: 20px;
+}
+
+.collect-data input[id=hrs] {
+  width: 70px;
+  display: inline-block;
+}
+
+.collect-data input[id=secs] {
+  width: 70px;
+  display: inline-block;
+}
+
+.collect-data input[id=mins] {
+  width: 70px;
+  display: inline-block;
+}
+
+.time-div {
+  display: inline-block;
+  margin: auto;
+}
+
+.header-nav li{
+  display: inline-block;
+  list-style: none;
+}
+
+
+.header-nav li:first-child {
+  display: inline-block;
+  list-style: none;
+  margin-right: 50px;
+}
