@@ -31,7 +31,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aezumezu/speech-timer.git"
+    "url": "git+https://github.com/aezumezu/timemaster.git"
   },
   "keywords": [
     "timer"
@@ -39,7 +39,7 @@
   "author": "Chukwuma Ezumezu",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/aezumezu/speech-timer/issues"
+    "url": "https://github.com/aezumezu/timemaster/issues"
   },
-  "homepage": "https://github.com/aezumezu/speech-timer#readme"
+  "homepage": "https://github.com/aezumezu/timemaster#readme"
 }
