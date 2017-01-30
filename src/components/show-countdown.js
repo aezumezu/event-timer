@@ -7,7 +7,7 @@ export default class ShowCountDown extends React.Component {
     const stopTimer = this.props.stopTimer;
     return (
       <div style={{ width: '100%' }}>
-        <button onClick={stopTimer}>Stop Timer</button>
+        <button onClick={stopTimer.bind(null, true)}>Stop Timer</button>
         <ReactHighcharts config={options} />
       </div>
     );
