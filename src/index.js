@@ -36,6 +36,11 @@ class Main extends React.Component {
       title: {
         text: lastRecord.title || 'Title'
       },
+      pie: {
+        dataLabels: {
+          softConnector: false
+        }
+      },
       series: [{
         data: [{
           name: "Time Used",
@@ -120,7 +125,11 @@ class Main extends React.Component {
     if (whatToRender === 'SessionRecords') {
       appBody = <SessionRecords data={this.state.records} />;
     } else if (whatToRender === 'countDownClock') {
-      appBody = <ShowCountDown options={this.getChartOptions} stopTimer={this.startStopTimer} />;
+      appBody = <ShowCountDown options={this.getChartOptions}
+        stopTimer={this.startStopTimer}
+        setView={this.setView}
+        timerRunning={this.state.timerRunning}
+        data={this.state.records} />;
     } else {
       appBody = <SetClockTime setTime={this.setSpeechTime} />;
     }
