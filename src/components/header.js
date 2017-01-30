@@ -16,13 +16,13 @@ export default class Header extends React.Component {
     const setView = this.props.setView;
 
     return (
-      <div className="header">
+      <div>
         <h1>TimeMaster</h1>
-        <div style={{ marginTop: '-100px' }}>
-          <div id="home-link" className="link" onClick={setView.bind(null, 'SetClockTime')} >
+        <div>
+          <div id="home-link" onClick={setView.bind(null, 'SetClockTime')} >
             Home
           </div>
-          <div id="session-link" className="link" onClick={setView.bind(null, 'SessionRecords')} >
+          <div id="session-link" onClick={setView.bind(null, 'SessionRecords')} >
             Show Session Records
           </div>
         </div>

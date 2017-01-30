@@ -34,12 +34,12 @@ class SetClockTime extends React.Component {
 
   render() {
     return (
-      <div className="collect-data">
+      <div>
         <form>
           <label htmlFor="title">Speech Title</label><br />
           <input id="title" type="text" /><br />
           <label htmlFor="time">*Time</label><br />
-          <div className="time-div">
+          <div>
             <input id="hrs" type="number" min="00" placeholder="HH" />
             <input id="mins" type="number" min="00" max="59" placeholder="MM" />
             <input id="secs" type="number" min="00" max="59" placeholder="SS" />

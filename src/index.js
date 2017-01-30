@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, Link, browserHistory } from 'react-router';
 import './style/styles.css';
 import SetClockTime from './components/set-timer';
 import ShowCountDown from './components/show-countdown';
@@ -19,55 +18,10 @@ class Main extends React.Component {
     }
     this.setSpeechTime = this.setSpeechTime.bind(this);
     this.countTime = this.countTime.bind(this);
-    this.getChartOptions = this.getChartOptions.bind(this);
     this.renderBody = this.renderBody.bind(this);
     this.setView = this.setView.bind(this);
     this.startStopTimer = this.startStopTimer.bind(this);
     this.toggleTimerRunning = this.toggleTimerRunning.bind(this);
-    this.getColour = this.getColour.bind(this);
-  }
-
-  getChartOptions() {
-    const lastRecord = this.state.records[this.state.records.length - 1];
-    const chartOptions = {
-      chart: {
-        type: 'pie'
-      },
-      title: {
-        text: lastRecord.title || 'Title'
-      },
-      pie: {
-        dataLabels: {
-          softConnector: false
-        }
-      },
-      series: [{
-        data: [{
-          name: "Time Used",
-          y: lastRecord.timeUsed,
-          color: this.getColour()
-        }, {
-          name: "Time Remaining",
-          y: lastRecord.timeRemaining,
-          color: 'grey'
-        }]
-      }]
-    };
-    return chartOptions;
-  }
-
-  getColour() {
-    let color = '#0f0';
-    const record = this.state.records[this.state.records.length - 1]
-    const totalTime = record.time;
-    const sixtyNinePercent = 69 * totalTime * 0.01;
-    const eightyNinePercent = 89 * totalTime * 0.01;
-    if (record.timeUsed > eightyNinePercent) {
-      color = '#f00';
-    } else if (record.timeUsed > sixtyNinePercent) {
-      color = '#ff0';
-    }
-    return color;
   }
 
   setSpeechTime(time, title) {
@@ -78,6 +32,8 @@ class Main extends React.Component {
     }
     record.title = title;
     record.time = time;
+    record.timeUsed = 0;
+    record.timeRemaining = time;
     record.speechNumber = speechNumber;
     const records = this.state.records;
     records.push(record);
@@ -122,10 +78,12 @@ class Main extends React.Component {
   renderBody() {
     let appBody;
     const whatToRender = this.state.whatToRender;
+    const lastRecord = this.state.records[this.state.records.length - 1];
+
     if (whatToRender === 'SessionRecords') {
       appBody = <SessionRecords data={this.state.records} />;
     } else if (whatToRender === 'countDownClock') {
-      appBody = <ShowCountDown options={this.getChartOptions}
+      appBody = <ShowCountDown lastRecord={lastRecord}
         stopTimer={this.startStopTimer}
         setView={this.setView}
         timerRunning={this.state.timerRunning}
@@ -133,16 +91,17 @@ class Main extends React.Component {
     } else {
       appBody = <SetClockTime setTime={this.setSpeechTime} />;
     }
+
     return appBody;
   }
 
   render() {
     const {timerRunning} = this.state;
     return (
-      <div className="app-body">
+      <div>
         <div>
           <Header setView={this.setView} timerRunning={timerRunning} />
-          <div className="display-body" id="display-area">
+          <div id="display-area">
             {this.renderBody()}
           </div>
         </div>

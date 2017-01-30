@@ -1,4 +1,5 @@
 import React from 'react';
+import ToTimeFormat from '../helpers/to-time-format';
 
 export default class SessionRecords extends React.Component {
   constructor() {
@@ -11,8 +12,8 @@ export default class SessionRecords extends React.Component {
     return records.map((record, index) => {
       return (<tr key={index}>
         <td>{record.title}</td>
-        <td>{record.time}</td>
-        <td>{record.timeUsed}</td>
+        <td>{ToTimeFormat(record.time)}</td>
+        <td>{ToTimeFormat(record.timeUsed)}</td>
       </tr>)
     });
   }
@@ -20,7 +21,7 @@ export default class SessionRecords extends React.Component {
   render() {
     const records = this.renderRecords();
     return (
-      <div style={{ marginTop: '100px' }}>
+      <div>
         <table>
           <thead>
             <tr>
