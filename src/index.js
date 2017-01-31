@@ -1,5 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
+import 'jquery';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
 import './style/styles.css';
 import SetClockTime from './components/set-timer';
 import ShowCountDown from './components/show-countdown';
@@ -98,11 +101,15 @@ class Main extends React.Component {
   render() {
     const {timerRunning} = this.state;
     return (
-      <div>
-        <div>
-          <Header setView={this.setView} timerRunning={timerRunning} />
-          <div id="display-area">
-            {this.renderBody()}
+      <div className="container">
+        <div className="row">
+          <div className="col-md-offset-3 col-md-6">
+            <div id="timemaster" className="text-center">
+              <Header setView={this.setView} timerRunning={timerRunning} />
+              <div id="display-area">
+                {this.renderBody()}
+              </div>
+            </div>
           </div>
         </div>
       </div>

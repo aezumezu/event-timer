@@ -16,17 +16,16 @@ export default class ShowCountDown extends React.Component {
 
     return (
       <div>
-        <button onClick={stopTimer.bind(null, true)}>Stop Timer</button>
         <div>
-          <div>
+          <div id="time-left">
             {timeRemaining}
-            Time Remaining
           </div>
           <div>
             {timeUsed}
             Time Used
           </div>
         </div>
+        <button className="btn btn-danger" onClick={stopTimer.bind(null, true)}>Stop Timer</button>
       </div>
     );
   }

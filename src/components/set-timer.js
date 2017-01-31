@@ -16,8 +16,8 @@ class SetClockTime extends React.Component {
   }
 
   setTime() {
-    const hr = document.getElementById('hrs').value
-    const min = document.getElementById('mins').value
+    const hr = document.getElementById('hrs').value;
+    const min = document.getElementById('mins').value || 3;
     const sec = document.getElementById('secs').value;
     if (!hr && !min && !sec) {
       alert('You have not set the time!');
@@ -35,16 +35,15 @@ class SetClockTime extends React.Component {
   render() {
     return (
       <div>
-        <form>
-          <label htmlFor="title">Speech Title</label><br />
-          <input id="title" type="text" /><br />
+        <form className="form">
+          <input className="form-control" placeholder="Speech Title" id="title" type="text" /><br />
           <label htmlFor="time">*Time</label><br />
           <div>
-            <input id="hrs" type="number" min="00" placeholder="HH" />
-            <input id="mins" type="number" min="00" max="59" placeholder="MM" />
-            <input id="secs" type="number" min="00" max="59" placeholder="SS" />
+            <input id="hrs" className="form-control" type="number" min="00" placeholder="HH" />
+            <input id="mins" className="form-control" type="number" min="00" max="59" placeholder="MM" />
+            <input id="secs" className="form-control" type="number" min="00" max="59" placeholder="SS" />
           </div>
-          <input type="button" value="Start CountDown" onClick={this.setTime} />
+          <input className="btn btn-primary start-btn" type="button" value="Start CountDown" onClick={this.setTime} />
         </form>
       </div>
     );

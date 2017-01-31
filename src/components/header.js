@@ -17,15 +17,17 @@ export default class Header extends React.Component {
 
     return (
       <div>
-        <h1>TimeMaster</h1>
-        <div>
-          <div id="home-link" onClick={setView.bind(null, 'SetClockTime')} >
-            Home
-          </div>
-          <div id="session-link" onClick={setView.bind(null, 'SessionRecords')} >
-            Show Session Records
-          </div>
-        </div>
+        <h2>Timemaster</h2>
+        <nav className="navbar navbar-default">
+          <ul className="nav navbar-nav">
+            <li className="active" id="home-link" onClick={setView.bind(null, 'SetClockTime')}>
+              <a data-toggle="tab">Home</a>
+            </li>
+            <li id="session-link" onClick={setView.bind(null, 'SessionRecords')}>
+              <a data-toggle="tab">Session Records</a>
+            </li>
+          </ul>
+        </nav>
       </div>
     );
   }
