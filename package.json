@@ -25,7 +25,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
+    "start": "npm run pro-build && node index.js",
     "dev-build": "node devServer.js",
     "pro-build": "node_modules/.bin/webpack --progress --colors -p --config webpack.config.prod.js"
   },
