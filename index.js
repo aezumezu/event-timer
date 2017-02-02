@@ -6,6 +6,7 @@ const router = express.Router();
 const port = process.env.PORT || 4000;
 
 app.use(router);
+app.use(express.static(__dirname + '/public'));
 
 // render the timer page
 app.get('/', (req, res, next) => {
