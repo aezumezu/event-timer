@@ -43,7 +43,7 @@ class SetClockTime extends React.Component {
             <input id="mins" className="form-control" type="number" min="00" max="59" placeholder="MM" />
             <input id="secs" className="form-control" type="number" min="00" max="59" placeholder="SS" />
           </div>
-          <input className="btn btn-primary start-btn" type="button" value="Start CountDown" onClick={this.setTime} />
+          <input className="btn btn-success start-btn" type="button" value="Start CountDown" onClick={this.setTime} />
         </form>
       </div>
     );

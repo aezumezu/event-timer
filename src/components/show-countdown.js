@@ -32,9 +32,8 @@ export default class ShowCountDown extends React.Component {
               <div className="pie-slice" className="hold"><div className="pie"></div></div>
             </div>
           </div>
-          <div id="time-used">
+          <div id="">
             {timeUsed}
-            Time Used
           </div>
         </div>
         <button className="btn btn-danger stop-btn" onClick={stopTimer.bind(null, true)}>Stop Timer</button>

@@ -111,6 +111,11 @@ class Main extends React.Component {
               </div>
             </div>
           </div>
+          <div className="col-md-3">
+            <div id="time-used">
+              <span className="label arrowed-in">06: 23: 23</span>
+            </div>
+          </div>
         </div>
       </div>
     );
