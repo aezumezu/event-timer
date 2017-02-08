@@ -15,3 +15,9 @@ export default function ToTimeFormat(timeInSec) {
 
   return `${hr}:${min}:${sec}`;
 }
+
+export function breakUpTime(timeString) {
+  const time = timeString.split(':');
+
+  return {hr: time[0], min: time[1], sec: time[2]}
+}

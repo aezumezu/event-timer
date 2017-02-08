@@ -17,7 +17,7 @@ export default class Header extends React.Component {
 
     return (
       <div>
-        <h2>Timemaster</h2>
+        <h2>Toastmasters TimeBomb</h2>
         <nav className="navbar navbar-default">
           <ul className="nav navbar-nav">
             <li className="active" id="home-link" onClick={setView.bind(null, 'SetClockTime')}>

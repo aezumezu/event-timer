@@ -1,5 +1,5 @@
 import React from 'react';
-import ToTimeFormat from '../helpers/to-time-format';
+import ToTimeFormat, { breakUpTime } from '../helpers/to-time-format';
 
 export default class ShowCountDown extends React.Component {
   constructor() {
@@ -11,21 +11,33 @@ export default class ShowCountDown extends React.Component {
   renderClock() {
     const record = this.props.lastRecord;
     const stopTimer = this.props.stopTimer;
-    const timeRemaining = ToTimeFormat(record.timeRemaining);
+    const timeRemaining = breakUpTime(ToTimeFormat(record.timeRemaining));
     const timeUsed = ToTimeFormat(record.timeUsed);
 
     return (
       <div>
         <div>
           <div id="time-left">
-            {timeRemaining}
+            <hr className="time-hr" />
+            <div className="pie-container">
+              <div className="pie-bg">{timeRemaining.hr}</div>
+              <div className="pie-slice" className="hold"><div className="pie"></div></div>
+            </div>
+            <div className="pie-container">
+              <div className="pie-bg">{timeRemaining.min}</div>
+              <div className="pie-slice" className="hold"><div className="pie"></div></div>
+            </div>
+            <div className="pie-container">
+              <div className="pie-bg">{timeRemaining.sec}</div>
+              <div className="pie-slice" className="hold"><div className="pie"></div></div>
+            </div>
           </div>
-          <div>
+          <div id="time-used">
             {timeUsed}
             Time Used
           </div>
         </div>
-        <button className="btn btn-danger" onClick={stopTimer.bind(null, true)}>Stop Timer</button>
+        <button className="btn btn-danger stop-btn" onClick={stopTimer.bind(null, true)}>Stop Timer</button>
       </div>
     );
   }
@@ -36,10 +48,25 @@ export default class ShowCountDown extends React.Component {
 
     return (
       <div>
-        <label>Speech Title</label>: {record.title}<br />
-        <label>Time Allotted</label>: {ToTimeFormat(record.time)}<br />
-        <label>Time Used</label>: {ToTimeFormat(record.timeUsed)}<br />
-        <div onClick={this.props.setView.bind(null, 'SetClockTime')}>Start New Count</div>
+        <div className="table-responsive">
+          <table className="table table-hover">
+            <tbody>
+              <tr>
+                <th>Speech Title</th>
+                <td>{record.title}</td>
+              </tr>
+              <tr>
+                <th>Time Allotted</th>
+                <td>{ToTimeFormat(record.time)}</td>
+              </tr>
+              <tr>
+                <th>Time Used</th>
+                <td>{ToTimeFormat(record.timeUsed)}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <input className="btn btn-primary start-btn" type="button" value="Start New Count" onClick={this.props.setView.bind(null, 'SetClockTime')} />
       </div>
     );
   }

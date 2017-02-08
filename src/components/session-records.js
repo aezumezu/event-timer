@@ -5,6 +5,7 @@ export default class SessionRecords extends React.Component {
   constructor() {
     super();
     this.renderRecords = this.renderRecords.bind(this);
+    this.renderBody = this.renderBody.bind(this);
   }
 
   renderRecords() {
@@ -17,24 +18,30 @@ export default class SessionRecords extends React.Component {
       </tr>)
     });
   }
-
+  renderBody() {
+    let body;
+    const records = <div className="table-responsive">
+      <table className="table table-hover">
+        <thead>
+          <tr>
+            <th>Speech Title</th>
+            <th>Time Allotted</th>
+            <th>Time Used</th>
+          </tr>
+        </thead>
+        <tbody>
+          {this.renderRecords()}
+        </tbody>
+      </table>
+    </div>
+    const message = <div>Sorry, there is no record to display now.</div>
+    body = this.props.data.length ? records :
+      message;
+    return body;
+  }
   render() {
-    const records = this.renderRecords();
     return (
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th>Speech Title</th>
-              <th>Time Allotted</th>
-              <th>Time Used</th>
-            </tr>
-          </thead>
-          <tbody>
-            {records}
-          </tbody>
-        </table>
-      </div>
+      <div>{this.renderBody()}</div>
     );
   }
 };
