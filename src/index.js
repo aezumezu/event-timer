@@ -8,7 +8,7 @@ import SetClockTime from './components/set-timer';
 import ShowCountDown from './components/show-countdown';
 import SessionRecords from './components/session-records';
 import Header from './components/header';
-import ToTimeFormat from './helpers/to-time-format';
+import ToTimeFormat from './helpers/time';
 
 class Main extends React.Component {
   constructor() {

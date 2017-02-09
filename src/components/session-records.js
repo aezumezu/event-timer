@@ -1,5 +1,6 @@
 import React from 'react';
-import ToTimeFormat from '../helpers/to-time-format';
+import ToTimeFormat from '../helpers/time';
+import DownloadSession from '../helpers/download';
 
 export default class SessionRecords extends React.Component {
   constructor() {
@@ -19,6 +20,7 @@ export default class SessionRecords extends React.Component {
     });
   }
   renderBody() {
+    const docTitle = `Toastmaster Event ${new Date}.csv`;
     let body;
     const records = <div className="table-responsive">
       <table className="table table-hover">
@@ -33,6 +35,8 @@ export default class SessionRecords extends React.Component {
           {this.renderRecords()}
         </tbody>
       </table>
+      <div className="btn btn-primary" onClick={DownloadSession.bind(null, this.props.data)}>
+        Download</div>
     </div>
     const message = <div>Sorry, there is no record to display now.</div>
     body = this.props.data.length ? records :

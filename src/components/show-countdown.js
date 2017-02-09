@@ -1,5 +1,5 @@
 import React from 'react';
-import ToTimeFormat, { breakUpTime } from '../helpers/to-time-format';
+import ToTimeFormat, { breakUpTime } from '../helpers/time';
 
 export default class ShowCountDown extends React.Component {
   constructor() {
