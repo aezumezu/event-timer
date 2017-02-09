@@ -17,7 +17,7 @@ class SetClockTime extends React.Component {
 
   setTime() {
     const hr = document.getElementById('hrs').value;
-    const min = document.getElementById('mins').value || 3;
+    const min = document.getElementById('mins').value;
     const sec = document.getElementById('secs').value;
     if (!hr && !min && !sec) {
       alert('You have not set the time!');

@@ -12,7 +12,8 @@ export default class ShowCountDown extends React.Component {
     const record = this.props.lastRecord;
     const stopTimer = this.props.stopTimer;
     const timeRemaining = breakUpTime(ToTimeFormat(record.timeRemaining));
-    const timeUsed = ToTimeFormat(record.timeUsed);
+    const extraTime = record.timeUsed - record.time;
+    const showExtraTime = extraTime > 0 ? `+${ToTimeFormat(extraTime)}` : '';
 
     return (
       <div>
@@ -33,7 +34,7 @@ export default class ShowCountDown extends React.Component {
             </div>
           </div>
           <div id="">
-            {timeUsed}
+            {showExtraTime}
           </div>
         </div>
         <button className="btn btn-danger stop-btn" onClick={stopTimer.bind(null, true)}>Stop Timer</button>

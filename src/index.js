@@ -8,13 +8,13 @@ import SetClockTime from './components/set-timer';
 import ShowCountDown from './components/show-countdown';
 import SessionRecords from './components/session-records';
 import Header from './components/header';
+import ToTimeFormat from './helpers/to-time-format';
 
 class Main extends React.Component {
   constructor() {
     super();
     this.state = {
       whatToRender: 'SetClockTime',
-      speechTime: '',
       records: [],
       stopTimer: false,
       timerRunning: false
@@ -100,6 +100,10 @@ class Main extends React.Component {
 
   render() {
     const {timerRunning} = this.state;
+    const lastRecord = this.state.records[this.state.records.length -1];
+    const timeBadgeTime = this.state.timerRunning ?
+      ToTimeFormat(lastRecord.time) : '';
+
     return (
       <div className="container">
         <div className="row">
@@ -113,7 +117,7 @@ class Main extends React.Component {
           </div>
           <div className="col-md-3">
             <div id="time-used">
-              <span className="label arrowed-in">06: 23: 23</span>
+              <span className="label arrowed-in">{timeBadgeTime}</span>
             </div>
           </div>
         </div>
